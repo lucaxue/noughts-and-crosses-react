@@ -25,7 +25,7 @@ function Game() {
   if (winner) {
     status = 'Winner: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status =   (xIsNext ? 'X' : 'O')+"'s turn ";
   }
 
   //takes in step as parameter, uses setStepNumber to set the state stepNumber to desired step
@@ -68,8 +68,8 @@ function Game() {
         <Board squares={current.squares} handleClick={handleClick} />
       </div>
       <span className="game-info">
-        <span className="status">{status}</span>
-        <ol>
+        <span className="status">{`Turn ${stepNumber}: ${status}`}</span>
+        <ul>
           {history.map((step, move) => {
             const desc = move ? 'Go to move #' + move : 'Go to game start';
             return (
@@ -84,7 +84,7 @@ function Game() {
               </li>
             );
           })}
-        </ol>
+        </ul>
       </span>
     </div>
   );

@@ -2,16 +2,30 @@
   margin-bottom: 10px;
 }
 
-.game ol {
-  padding-left: 30px;
+.game ul {
+  margin-left: -40px;
+  list-style-type: none;
 }
 
 .game {
-    width: 20%;
-    margin: 100px auto;
+  width: 20%;
+  margin: 100px auto;
 }
 
 .game-info {
-    position:absolute; top:95px; left:275px;
-    float: right;
+  position: absolute;
+  top: 95px;
+  left: 275px;
+}
+
+.game-board {
+  position: absolute;
+  top: 95px;
+  left: 500px;
+}
+
+html {
+  --darkest: #34343a;
+  --darker: #232e3a;
+  --dark: #2c3e50;
 }
