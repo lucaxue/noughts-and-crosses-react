@@ -64,6 +64,7 @@ function Game() {
   //returns appropriate Go to move descripton as an li in the ol
   return (
     <div className="game">
+      <h1>{"Noughts and Crosses"}</h1>
       <div className="game-board">
         <Board squares={current.squares} handleClick={handleClick} />
       </div>
