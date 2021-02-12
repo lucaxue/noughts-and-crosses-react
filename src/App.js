@@ -3,11 +3,9 @@ import './App.css';
 import React, { useState } from 'react';
 
 //component - square is a button
-function Square(props) {
-  //usestate of value
-  const [value, setValue] = useState(null);
+function Square({ handleClick, value, i }) {
   return (
-    <button className="square" onClick={() => setValue('X')}>
+    <button className="square" onClick={() => {handleClick(i)}}>
       {value}
     </button>
   );
@@ -18,24 +16,30 @@ function Board() {
   //state of squares
   const [squares, setSquares] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
 
+  function handleClick(i){
+    const newSquares = squares.slice();
+    newSquares[i] = 'X';
+    setSquares(newSquares);
+  }
+
   return (
     <div>
       <div className="status">{status}</div>
       <div className="board-row">
         {/* three sq keys 0 1 2  */}
         {squares.slice(0, 3).map((item) => (
-          <Square key={item} value={item} />
+          <Square key={item} value={item} handleClick={handleClick} i={item} />
         ))}
       </div>
       <div className="board-row">
         {/* three sq keys 3 4 5 */}
         {squares.slice(3, 6).map((item) => (
-          <Square key={item} value={item} />
+          <Square key={item} value={item} handleClick={handleClick} i={item} />
         ))}
       </div>
       <div className="board-row">
         {squares.slice(6).map((item) => (
-          <Square key={item} value={item} />
+          <Square key={item} value={item} handleClick={handleClick} i={item}/>
         ))}
       </div>
     </div>
