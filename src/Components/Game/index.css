@@ -7,10 +7,10 @@
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+    width: 30%;
+    margin: 100px auto;
 }
 
 .game-info {
-  margin-left: 20px;
+  float: right;
 }
