@@ -1,58 +1,6 @@
-import './App.css';
 import React, { useState } from 'react';
+import Board from '../Board';
 
-//component - square is a button
-function Square({ handleClick, value, i }) {
-  return (
-    <button
-      className="square"
-      onClick={() => {
-        handleClick(i);
-      }}
-    >
-      {value}
-    </button>
-  );
-}
-
-function Board({ squares, handleClick }) {
-  return (
-    <div>
-      <div className="board-row">
-        {/* three sq keys 0 1 2  */}
-        {squares.slice(0, 3).map((item, index) => (
-          <Square
-            key={index}
-            value={item}
-            handleClick={handleClick}
-            i={index}
-          />
-        ))}
-      </div>
-      <div className="board-row">
-        {/* three sq keys 3 4 5 */}
-        {squares.slice(3, 6).map((item, index) => (
-          <Square
-            key={index + 3}
-            value={item}
-            handleClick={handleClick}
-            i={index + 3}
-          />
-        ))}
-      </div>
-      <div className="board-row">
-        {squares.slice(6).map((item, index) => (
-          <Square
-            key={index + 6}
-            value={item}
-            handleClick={handleClick}
-            i={index + 6}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function Game() {
   const [history, setHistory] = useState([
@@ -63,7 +11,7 @@ function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
 
-  const current = history[history.length - 1];
+  const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
 
   let status;
@@ -87,6 +35,7 @@ function Game() {
     }
     squares[i] = xIsNext ? 'X' : 'O';
     setHistory([...historyArr, { squares: squares }]);
+    setStepNumber(history.length);
     setXIsNext(!xIsNext);
   }
 
@@ -102,7 +51,7 @@ function Game() {
             const desc = move ? 'Go to move #' + move : 'Go to game start';
             return (
               <li key={move}>
-                <button onClick={() => history.jumpTo(move)}>{desc}</button>
+                <button onClick={()=> {jumpTo(move)}}>{desc}</button>
               </li>
             );
           })}
