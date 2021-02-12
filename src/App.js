@@ -1,45 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 
 //component - square is a button
 function Square({ handleClick, value, i }) {
   return (
-    <button className="square" onClick={() => {handleClick(i)}}>
+    <button
+      className="square"
+      onClick={() => {
+        handleClick(i);
+      }}
+    >
       {value}
     </button>
   );
 }
 
 function Board() {
-  const [status, setStatus] = useState('Next player: X');
   //state of squares
   const [squares, setSquares] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+  const [xIsNext, setXIsNext] = useState(true);
 
-  function handleClick(i){
+  function handleClick(i) {
     const newSquares = squares.slice();
-    newSquares[i] = 'X';
+    newSquares[i] = xIsNext ? 'X' : 'O';
     setSquares(newSquares);
+    setXIsNext(!xIsNext);
   }
 
   return (
     <div>
-      <div className="status">{status}</div>
+      <div className="status">{`Next player:${xIsNext ? 'X' : 'O'}`}</div>
       <div className="board-row">
         {/* three sq keys 0 1 2  */}
-        {squares.slice(0, 3).map((item) => (
-          <Square key={item} value={item} handleClick={handleClick} i={item} />
+        {squares.slice(0, 3).map((item, index) => (
+          <Square
+            key={index}
+            value={item}
+            handleClick={handleClick}
+            i={index}
+          />
         ))}
       </div>
       <div className="board-row">
         {/* three sq keys 3 4 5 */}
-        {squares.slice(3, 6).map((item) => (
-          <Square key={item} value={item} handleClick={handleClick} i={item} />
+        {squares.slice(3, 6).map((item, index) => (
+          <Square
+            key={index + 3}
+            value={item}
+            handleClick={handleClick}
+            i={index + 3}
+          />
         ))}
       </div>
       <div className="board-row">
-        {squares.slice(6).map((item) => (
-          <Square key={item} value={item} handleClick={handleClick} i={item}/>
+        {squares.slice(6).map((item, index) => (
+          <Square
+            key={index + 6}
+            value={item}
+            handleClick={handleClick}
+            i={index + 6}
+          />
         ))}
       </div>
     </div>
