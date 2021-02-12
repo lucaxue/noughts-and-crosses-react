@@ -1,10 +1,11 @@
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: none;
   float: left;
-  font-size: 48px;
+  font-family: 'Poppins';
+  font-size: 38px;
   font-weight: bold;
-  line-height: 68px;
+  color: #34343a;
   height: 68px;
   margin: 2px;
   padding: 0;
