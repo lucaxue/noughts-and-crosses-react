@@ -16,7 +16,6 @@ function Square({ handleClick, value, i }) {
 }
 
 function Board({ squares, handleClick }) {
-
   return (
     <div>
       <div className="board-row">
@@ -56,48 +55,64 @@ function Board({ squares, handleClick }) {
 }
 
 function Game() {
-  const [history, setHistory] = useState([{
-    squares: Array(9).fill(null),
-  }]);
+  const [history, setHistory] = useState([
+    {
+      squares: Array(9).fill(null),
+    },
+  ]);
   const [xIsNext, setXIsNext] = useState(true);
+  const [stepNumber, setStepNumber] = useState(0);
 
-    const current = history[history.length - 1];
-    const winner = calculateWinner(current.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  const current = history[history.length - 1];
+  const winner = calculateWinner(current.squares);
+
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+
+  function jumpTo(step) {
+    setStepNumber(step);
+    setXIsNext(step % 2 === 0);
+  }
+
+  function handleClick(i) {
+    const historyArr = history.slice(0, stepNumber + 1);
+    const current = historyArr[historyArr.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
     }
-
-
-    function handleClick(i) {
-      const current = history[history.length - 1];
-      const squares = current.squares.slice();
-      if (calculateWinner(squares) || squares[i]) {
-        return;
-      }
-      squares[i] = xIsNext ? 'X' : 'O';
-      setHistory([...history, {squares: squares}]);
-      setXIsNext(!xIsNext);
-    }
-
+    squares[i] = xIsNext ? 'X' : 'O';
+    setHistory([...historyArr, { squares: squares }]);
+    setXIsNext(!xIsNext);
+  }
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={current.squares} handleClick={handleClick}/>
+        <Board squares={current.squares} handleClick={handleClick} />
       </div>
       <div className="game-info">
-      <div>{status}</div>
-        <ol>{/* TODO */}</ol>
+        <div>{status}</div>
+        <ol>
+          {history.map((step, move) => {
+            const desc = move ? 'Go to move #' + move : 'Go to game start';
+            return (
+              <li key={move}>
+                <button onClick={() => history.jumpTo(move)}>{desc}</button>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </div>
   );
 }
 
 export default Game;
-
 
 function calculateWinner(squares) {
   const lines = [
