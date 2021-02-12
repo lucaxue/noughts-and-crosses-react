@@ -7,10 +7,11 @@
 }
 
 .game {
-    width: 30%;
+    width: 20%;
     margin: 100px auto;
 }
 
 .game-info {
-  float: right;
+    position:absolute; top:95px; left:275px;
+    float: right;
 }
