@@ -1,4 +1,5 @@
-.board-row {
-    position: relative;
-    
-}
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+  }

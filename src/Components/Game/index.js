@@ -68,7 +68,7 @@ function Game() {
         <Board squares={current.squares} handleClick={handleClick} />
       </div>
       <div className="game-info">
-        <div>{status}</div>
+        <div className="status">{status}</div>
         <ol>
           {history.map((step, move) => {
             const desc = move ? 'Go to move #' + move : 'Go to game start';

@@ -1,9 +1,18 @@
 .square {
-    width: 50px;
-    height: 50px;
-    margin: 30px;
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 68px;
+  height: 68px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 68px;
 }
 
-.square button:active {
-    transform: translate(0);
+.square:focus {
+  outline: none;
 }
