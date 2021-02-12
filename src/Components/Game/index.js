@@ -13,9 +13,10 @@ function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   //stepNumber state to track the current step number, used after to go back turns - initial states of 0
   const [stepNumber, setStepNumber] = useState(0);
-
-  //current is the object in history at index stepNumber
-  const current = history[stepNumber];
+  //shallow copy of the history state up to the stepNumber
+  const historyArr = history.slice(0, stepNumber + 1);
+  //current points to the object of the current board
+  const current = historyArr[historyArr.length - 1];
   //finds winner using the calculateWinner function, with the squares property from current, passed in
   const winner = calculateWinner(current.squares);
 
@@ -25,7 +26,7 @@ function Game() {
   if (winner) {
     status = 'Winner: ' + winner;
   } else {
-    status =   (xIsNext ? 'X' : 'O')+"'s turn ";
+    status = (xIsNext ? 'X' : 'O') + "'s turn ";
   }
 
   //takes in step as parameter, uses setStepNumber to set the state stepNumber to desired step
@@ -64,7 +65,7 @@ function Game() {
   //returns appropriate Go to move descripton as an li in the ol
   return (
     <div className="game">
-      <h1>{"Noughts and Crosses"}</h1>
+      <h1>{'Noughts and Crosses'}</h1>
       <div className="game-board">
         <Board squares={current.squares} handleClick={handleClick} />
       </div>
