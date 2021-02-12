@@ -1,0 +1,9 @@
+.square {
+    width: 50px;
+    height: 50px;
+    margin: 30px;
+}
+
+.square button:active {
+    transform: translate(0);
+}
