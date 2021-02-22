@@ -66,28 +66,30 @@ function Game() {
   return (
     <div className="game">
       <h1>{'Noughts and Crosses'}</h1>
-      <div className="game-board">
-        <Board squares={current.squares} handleClick={handleClick} />
+      <div className="game-main">
+        <span className="game-info">
+          <span className="status">{`Turn ${stepNumber}: ${status}`}</span>
+          <ul>
+            {history.map((step, move) => {
+              const desc = move ? 'Go to move #' + move : 'Go to game start';
+              return (
+                <li key={move}>
+                  <button
+                    onClick={() => {
+                      jumpTo(move);
+                    }}
+                  >
+                    {desc}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </span>
+        <div className="game-board">
+          <Board squares={current.squares} handleClick={handleClick} />
+        </div>
       </div>
-      <span className="game-info">
-        <span className="status">{`Turn ${stepNumber}: ${status}`}</span>
-        <ul>
-          {history.map((step, move) => {
-            const desc = move ? 'Go to move #' + move : 'Go to game start';
-            return (
-              <li key={move}>
-                <button
-                  onClick={() => {
-                    jumpTo(move);
-                  }}
-                >
-                  {desc}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </span>
     </div>
   );
 }

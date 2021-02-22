@@ -8,43 +8,42 @@
 }
 
 .game {
-  width: 20%;
-  margin: 100px auto;
+  display: grid;
+  place-items: center;
+}
+
+.game-main {
+  display: grid;
+  background-color: #2c3e50;
+  border-radius: 10px;
+  grid-template-columns: minmax(216px, 40%) 1fr;
+  padding: 120px 100px;
 }
 
 .game h1 {
-  position: absolute;
-  top: 0px;
-  left: 245px;
-  font-size: 80px;
+  font-size: 75px;
   color: white;
+  text-align: center;
 }
 
 .game-info {
-  position: absolute;
-  top: 265px;
-  left: 380px;
   color: white;
-  background-color: #2c3e50;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 20px;
+  margin-right: 20px;
+  font-size: 17.5px;
 }
 
 .game-info button {
   font-family: 'Poppins';
+  font-size: 12.5px;
+  margin-top: 2px;
 }
 
 .game-board {
-  position: absolute;
-  top: 245px;
-  left: 350px;
   background-color: #34343a;
   padding: 10px;
+  width: 324px;
+  height: 324px;
   border-radius: 10px;
-  border-style: solid;
-  border-width: 100px 100px 100px 250px;
-  border-color: #2c3e50;
 }
 
 /* colours 

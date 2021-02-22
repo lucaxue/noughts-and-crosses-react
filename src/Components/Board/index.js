@@ -6,7 +6,7 @@ function Board({ squares, handleClick }) {
   //slice + map to return squares in appropriate rows
   //item, index, and handleClick passed to appropraite props
   return (
-    <div>
+    <div className="board">
       <div className="board-row">
         {/* three sq keys 0 1 2  */}
         {squares.slice(0, 3).map((item, index) => (
